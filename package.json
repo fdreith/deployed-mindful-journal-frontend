@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Mindful Journal helps you keep track with a journaling goal by giving you writing prompts based on your mood or an emotion you are trying to cultivate. You can filter your past journal entries by mood/emotion to reflect back.",
+  "main": "index.js",
+  "dependencies": {
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node javascripts/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

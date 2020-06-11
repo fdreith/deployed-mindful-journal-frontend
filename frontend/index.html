@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindful Journal</title>
+
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" /> -->
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body class="#eceff1 blue-grey lighten-5">
+  <div class="container">
+    <!-- Page Content goes here -->
+    <div id="header">
+      <h3 class="center-align"> Mindful Journal</h3>
+    </div>
+
+    <div id="prompt-div" class="center-align"></div>
+    <br><br>
+    <div class="divider"></div>
+    <br>
+    <div id="journal-entries"></div>
+
+    <div id="entries-title"></div>
+
+    <div id="entries-div"></div>
+
+    <script src="javascripts/models/entry.js"></script>
+    <script src="javascripts/models/mood.js"></script>
+    <script src="javascripts/models/prompt.js"></script>
+    <script defer src="javascripts/index.js"></script>
+
+  </div>
+
+  <!--JavaScript at end of body for optimized loading-->
+  <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
+</body>
+
+</html>
