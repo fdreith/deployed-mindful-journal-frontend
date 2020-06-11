@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", getMoods)
 
 const promptDiv = document.getElementById("prompt-div")
@@ -8,7 +9,7 @@ let timer
 let interval
 
 function getMoods() {
-  fetch('https://mindful-journal.herokuapp.com/moods/')
+  fetch('mindful-journal.herokuapp.com/moods/')
     .then(function (response) {
       if (response.status !== 200) {
         throw new Error(response.statusText)
