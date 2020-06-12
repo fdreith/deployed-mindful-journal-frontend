@@ -1,4 +1,4 @@
-
+const BASE_URL = 'https://mindful-journal.herokuapp.com'
 document.addEventListener("DOMContentLoaded", getMoods)
 
 const promptDiv = document.getElementById("prompt-div")
@@ -9,7 +9,7 @@ let timer
 let interval
 
 function getMoods() {
-  fetch('mindful-journal.herokuapp.com/moods/')
+  fetch(`${BASE_URL}/moods/`)
     .then(function (response) {
       if (response.status !== 200) {
         throw new Error(response.statusText)
@@ -116,7 +116,7 @@ function createEntry(e) {
     }
   }
 
-  fetch('https://mindful-journal.herokuapp.com/entries/', {
+  fetch(`${BASE_URL}/entries/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -246,7 +246,7 @@ function unexpandEntry(e) {
 function deleteEntry(e) {
   e.preventDefault
   if (window.confirm("Are you sure you want to delete this entry?")) {
-    fetch(`https://mindful-journal.herokuapp.com/entries/${e.target.id}`, {
+    fetch(`${BASE_URL}/entries/${e.target.id}`, {
       method: "DELETE",
     })
       .then(resp => resp.json())
