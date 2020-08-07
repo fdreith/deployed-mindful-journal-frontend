@@ -1,4 +1,6 @@
 class Entry {
+  static all = [];
+
   constructor(data) {
     this.id = data.id;
     this.prompt = this.findPrompt(data);
@@ -7,9 +9,7 @@ class Entry {
     this.content = data.content;
     this.created_at = new Date(data.created_at);
     this.save();
-    this.all = [];
   }
-  // static all = [];
 
   save() {
     Entry.all.push(this);

@@ -1,5 +1,5 @@
 class Mood {
-  // static all = []
+  static all = []
 
   constructor(data) {
     this.id = data.id
@@ -7,7 +7,6 @@ class Mood {
     this.prompts = data.prompts
     this.entries = data.entries
     this.save()
-    this.all = []
   }
   save() {
     if (!!!Mood.all.find(mood => mood.id === this.id)) {
