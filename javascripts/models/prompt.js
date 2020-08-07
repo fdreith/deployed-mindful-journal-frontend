@@ -1,22 +1,20 @@
-
 class Prompt {
-  // static all = []
+  static all = [];
 
   constructor(data) {
-    this.id = data.id
-    this.question = data.question
-    this.mood = this.findMood(data)
-    this.save()
+    this.id = data.id;
+    this.question = data.question;
+    this.mood = this.findMood(data);
+    this.save();
   }
 
   save() {
-    if (!!!allPrompts.find(prompt => prompt.id === this.id)) {
-      allPrompts.push(this)
+    if (!!!Prompt.all.find((prompt) => prompt.id === this.id)) {
+      Prompt.all.push(this);
     }
   }
 
   findMood(data) {
-    return allMoods.find(mood => mood.id === data.mood_id)
+    return Mood.all.find((mood) => mood.id === data.mood_id);
   }
-
 }

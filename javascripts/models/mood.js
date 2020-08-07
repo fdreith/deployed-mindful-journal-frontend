@@ -1,7 +1,5 @@
-
-
 class Mood {
-  // static all = []
+  static all = []
 
   constructor(data) {
     this.id = data.id;
@@ -11,8 +9,8 @@ class Mood {
     this.save();
   }
   save() {
-    if (!!!allMoods.find((mood) => mood.id === this.id)) {
-      allMoods.push(this);
+    if (!!!Mood.all.find((mood) => mood.id === this.id)) {
+      Mood.all.push(this);
     }
   }
 }
