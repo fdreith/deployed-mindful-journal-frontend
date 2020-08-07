@@ -7,9 +7,9 @@ const journalEntriesDiv = document.getElementById("journal-entries");
 const entriesTitle = document.getElementById("entries-title");
 let timer;
 let interval;
-export const allMoods = []
-export const allEntries = []
-export const allPrompts = []
+const allMoods = [];
+const allEntries = [];
+const allPrompts = [];
 
 function getMoods() {
   fetch(`${BASE_URL}/moods/`)

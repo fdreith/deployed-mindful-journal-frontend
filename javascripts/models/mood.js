@@ -1,4 +1,4 @@
-import { allMoods } from "../index";
+
 
 class Mood {
   // static all = []

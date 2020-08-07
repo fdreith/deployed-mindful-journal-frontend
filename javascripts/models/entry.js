@@ -1,6 +1,3 @@
-import { allEntries } from "../index";
-import { allPrompts } from "../index";
-
 class Entry {
   // static all = [];
 

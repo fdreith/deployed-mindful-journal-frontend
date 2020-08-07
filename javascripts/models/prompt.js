@@ -1,5 +1,4 @@
-import { allPrompts } from "../index";
-import { allMoods } from "../index";
+
 class Prompt {
   // static all = []
 
