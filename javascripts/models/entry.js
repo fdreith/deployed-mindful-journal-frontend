@@ -1,5 +1,8 @@
+import { allEntries } from "../index";
+import { allPrompts } from "../index";
+
 class Entry {
-  static all = [];
+  // static all = [];
 
   constructor(data) {
     this.id = data.id;
@@ -12,7 +15,7 @@ class Entry {
   }
 
   save() {
-    Entry.all.push(this);
+    allEntries.push(this);
   }
 
   renderEntry() {
@@ -37,7 +40,7 @@ class Entry {
   }
 
   findPrompt(data) {
-    return Prompt.all.find((prompt) => prompt.id === data.prompt_id);
+    return allPrompts.find((prompt) => prompt.id === data.prompt_id);
   }
 
   findMood(data) {

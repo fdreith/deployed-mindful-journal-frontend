@@ -1,5 +1,7 @@
+import { allPrompts } from "../index";
+import { allMoods } from "../index";
 class Prompt {
-  static all = []
+  // static all = []
 
   constructor(data) {
     this.id = data.id
@@ -9,13 +11,13 @@ class Prompt {
   }
 
   save() {
-    if (!!!Prompt.all.find(prompt => prompt.id === this.id)) {
-      Prompt.all.push(this)
+    if (!!!allPrompts.find(prompt => prompt.id === this.id)) {
+      allPrompts.push(this)
     }
   }
 
   findMood(data) {
-    return Mood.all.find(mood => mood.id === data.mood_id)
+    return allMoods.find(mood => mood.id === data.mood_id)
   }
 
 }
