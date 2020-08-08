@@ -50,7 +50,7 @@ const ENTRIES = (function () {
 })();
 
 function getMoods() {
-  fetch(fetch(`${BASE_URL}/moods/`))
+  fetch(`${BASE_URL}/moods/`)
     .then(function (response) {
       if (response.status !== 200) {
         throw new Error(response.statusText);
