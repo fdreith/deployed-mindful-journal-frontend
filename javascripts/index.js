@@ -302,7 +302,7 @@ function unexpandEntry(e) {
 function deleteEntry(e) {
   e.preventDefault;
   if (window.confirm("Are you sure you want to delete this entry?")) {
-    fetch(`${BASE_URL} /entries/${e.target.id}`, {
+    fetch(`${BASE_URL}/entries/${e.target.id}`, {
       method: "DELETE",
     })
       .then((resp) => resp.json())
