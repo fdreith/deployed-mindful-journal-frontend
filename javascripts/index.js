@@ -1,4 +1,5 @@
 const BASE_URL = "https://mindful-journal.herokuapp.com";
+
 document.addEventListener("DOMContentLoaded", getMoods);
 
 const promptDiv = document.getElementById("prompt-div");
@@ -8,11 +9,50 @@ const entriesTitle = document.getElementById("entries-title");
 let timer;
 let interval;
 
+const MOODS = (function () {
+  const totalMoods = [];
+  return {
+    save: function (mood) {
+      if (!!!MOODS.all().find((mood) => mood.id === this.id)) {
+        return totalMoods.push(mood);
+      }
+    },
+    all: function () {
+      return totalMoods;
+    },
+  };
+})();
+
+const PROMPTS = (function () {
+  const totalPrompts = [];
+  return {
+    save: function (prompt) {
+      if (!!!PROMPTS.all().find((prompt) => prompt.id === this.id)) {
+        totalPrompts.push(prompt);
+      }
+    },
+    all: function () {
+      return totalPrompts;
+    },
+  };
+})();
+
+const ENTRIES = (function () {
+  const totalEntries = [];
+  return {
+    save: function (entry) {
+      return totalEntries.push(entry);
+    },
+    all: function () {
+      return totalEntries;
+    },
+  };
+})();
+
 function getMoods() {
-  fetch(`${BASE_URL}/moods/`)
+  fetch(fetch(`${BASE_URL}/moods/`))
     .then(function (response) {
       if (response.status !== 200) {
-        binding.pry;
         throw new Error(response.statusText);
       }
       return response.json();
@@ -26,13 +66,17 @@ function getMoods() {
 }
 
 function createPrompts(moods) {
-  let prompts = moods.map((mood) => mood.prompts).flat(1);
+  let prompts = MOODS.all()
+    .map((mood) => mood.prompts)
+    .flat(1);
   prompts.forEach((prompt) => new Prompt(prompt));
   createEntries();
 }
 
 function createEntries() {
-  let entries = Mood.all.map((mood) => mood.entries).flat(1);
+  let entries = MOODS.all()
+    .map((mood) => mood.entries)
+    .flat(1);
   entries.forEach((entry) => new Entry(entry));
   pastEntriesButton();
 }
@@ -48,7 +92,7 @@ function appendMoodPromptOptions() {
 }
 
 function addMoodPromptButtons() {
-  Mood.all.forEach((mood) => {
+  MOODS.all().forEach((mood) => {
     promptDiv.insertAdjacentHTML(
       "beforeend",
       ` <a class="waves-effect waves-light btn-large" id="${mood.id}">${mood.mood_type}</a>`
@@ -66,7 +110,7 @@ function addPromptListeners() {
 
 function randomPrompt(e) {
   e.preventDefault();
-  let targetPrompts = Prompt.all.filter(
+  let targetPrompts = PROMPTS.all().filter(
     (prompt) => prompt.mood.id === parseInt(e.target.id)
   );
   let randomPrompt = targetPrompts.random();
@@ -176,7 +220,7 @@ function addDropdownOptions() {
       <li><a href="#!" id="all">All Entries</a></li>
       `
   );
-  Mood.all.forEach((mood) => {
+  MOODS.all().forEach((mood) => {
     dropdownOptions.insertAdjacentHTML(
       "beforeend",
       `
@@ -192,14 +236,14 @@ function addDropdownOptions() {
 
 function getEntries() {
   entriesTitle.innerHTML = "";
-  sortEntries(Entry.all);
-  renderEntries(Entry.all);
+  sortEntries(ENTRIES.all());
+  renderEntries(ENTRIES.all());
 }
 
 function sortEntries(entries) {
   entries.sort(function (a, b) {
     let keyA = new Date(a.created_at),
-      keyB = new Date(b.updated_at);
+      keyB = new Date(b.created_at);
     if (keyA < keyB) return -1;
     if (keyA > keyB) return 1;
     return 0;
@@ -258,7 +302,7 @@ function unexpandEntry(e) {
 function deleteEntry(e) {
   e.preventDefault;
   if (window.confirm("Are you sure you want to delete this entry?")) {
-    fetch(`${BASE_URL}/entries/${e.target.id}`, {
+    fetch(`${BASE_URL} /entries/${e.target.id}`, {
       method: "DELETE",
     })
       .then((resp) => resp.json())
@@ -276,9 +320,9 @@ function deleteEntry(e) {
 }
 
 function deleteEntryFromAll(id) {
-  for (let i = 0; i < Entry.all.length; i++) {
-    if (Entry.all[i].id === parseInt(id)) {
-      Entry.all.splice(i, 1);
+  for (let i = 0; i < ENTRIES.all().length; i++) {
+    if (ENTRIES.all()[i].id === parseInt(id)) {
+      ENTRIES.all().splice(i, 1);
       i--;
     }
   }
@@ -296,8 +340,8 @@ function getEntriesByMood(e) {
   if (e.target.id === "all") {
     getEntries();
   } else {
-    let mood = Mood.all.find((mood) => mood.id === parseInt(e.target.id));
-    let entries = Entry.all.filter(
+    let mood = MOODS.all().find((mood) => mood.id === parseInt(e.target.id));
+    let entries = ENTRIES.all().filter(
       (entry) => entry.mood.id === parseInt(e.target.id)
     );
     entriesTitle.innerHTML = `<h5>Entries that you felt ${mood.mood_type}:</h5>`;

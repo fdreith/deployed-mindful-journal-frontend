@@ -1,6 +1,4 @@
 class Entry {
-  static all = [];
-
   constructor(data) {
     this.id = data.id;
     this.prompt = this.findPrompt(data);
@@ -8,11 +6,7 @@ class Entry {
     this.minutes = data.minutes;
     this.content = data.content;
     this.created_at = new Date(data.created_at);
-    this.save();
-  }
-
-  save() {
-    Entry.all.push(this);
+    ENTRIES.save(this);
   }
 
   renderEntry() {
@@ -37,7 +31,7 @@ class Entry {
   }
 
   findPrompt(data) {
-    return Prompt.all.find((prompt) => prompt.id === data.prompt_id);
+    return PROMPTS.all().find((prompt) => prompt.id === data.prompt_id);
   }
 
   findMood(data) {
